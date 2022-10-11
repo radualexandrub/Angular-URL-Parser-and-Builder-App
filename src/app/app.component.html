@@ -1,0 +1,12 @@
+<div>
+  <form #urlForm="ngForm" (ngSubmit)="onParseUrl(urlForm)">
+    <div>
+      <label for="url">URL</label>
+      <input ngModel type="url" name="url" id="url" required />
+    </div>
+    <div class="form__item--buttons">
+      <button type="submit">Parse</button>
+      <button type="reset">Clear</button>
+    </div>
+  </form>
+</div>
