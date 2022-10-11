@@ -1,12 +1,149 @@
 <div>
+  <h1>Simple URL Parser and Query Builder App</h1>
   <form #urlForm="ngForm" (ngSubmit)="onParseUrl(urlForm)">
     <div>
       <label for="url">URL</label>
       <input ngModel type="url" name="url" id="url" required />
     </div>
     <div class="form__item--buttons">
-      <button type="submit">Parse</button>
-      <button type="reset">Clear</button>
+      <button type="submit" [disabled]="urlForm.invalid">Parse</button>
+      <button type="reset" (click)="onClearUrl()">Clear</button>
     </div>
   </form>
+
+  <div *ngIf="urlNew">
+    <p>Parsed URL Parts</p>
+    <form #urlNewForm="ngForm" (change)="onBuildUrl(urlNewForm)">
+      <div>
+        <label for="protocol">Protocol</label>
+        <input
+          type="text"
+          name="protocol"
+          id="protocol"
+          ngModel="{{ urlNew.protocol }}"
+          required
+          disabled
+        />
+      </div>
+      <div>
+        <label for="hash">Hash</label>
+        <input
+          type="text"
+          name="hash"
+          id="hash"
+          ngModel="{{ urlNew.hash }}"
+          required
+        />
+      </div>
+      <div>
+        <label for="host">Host</label>
+        <input
+          type="text"
+          name="host"
+          id="host"
+          ngModel="{{ urlNew.host }}"
+          required
+        />
+      </div>
+      <div>
+        <label for="hostname">Hostname</label>
+        <input
+          type="text"
+          name="hostname"
+          id="hostname"
+          ngModel="{{ urlNew.hostname }}"
+          required
+        />
+      </div>
+      <div>
+        <label for="path">Path</label>
+        <input
+          type="text"
+          name="path"
+          id="path"
+          ngModel="{{ urlNew.pathname }}"
+          required
+        />
+      </div>
+      <div>
+        <label for="origin">Origin</label>
+        <input
+          type="text"
+          name="origin"
+          id="origin"
+          ngModel="{{ urlNew.origin }}"
+          required
+        />
+      </div>
+      <div>
+        <label for="href">Href</label>
+        <input
+          type="text"
+          name="href"
+          id="href"
+          ngModel="{{ urlNew.href }}"
+          required
+        />
+      </div>
+      <div>
+        <label for="port">Port</label>
+        <input
+          type="text"
+          name="port"
+          id="port"
+          ngModel="{{ urlNew.port }}"
+          required
+        />
+      </div>
+      <div>
+        <label for="username">Username</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          ngModel="{{ urlNew.username }}"
+          required
+        />
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input
+          type="text"
+          name="password"
+          id="password"
+          ngModel="{{ urlNew.password }}"
+          required
+        />
+      </div>
+      <div>
+        <label for="search">Search</label>
+        <input
+          type="text"
+          name="search"
+          id="search"
+          ngModel="{{ urlNew.search }}"
+          required
+        />
+      </div>
+    </form>
+
+    <p>Query String</p>
+    <form #urlNewFormQuery="ngForm" (change)="onBuildUrlParams(urlNewFormQuery)">
+      <div *ngFor="let param of urlParams | keyvalue">
+        <label for="{{ param.key }}">{{ param.key }}</label>
+        <input
+          type="text"
+          name="{{ param.key }}"
+          id="{{ param.key }}"
+          ngModel="{{ param.value }}"
+          required
+        />
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="urlNewComplete">
+    <p>New URL:</p>
+    <a href="{{urlNewComplete}}" target="_blank">{{urlNewComplete}}</a>
+  </div>
 </div>
