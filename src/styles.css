@@ -1,1 +1,150 @@
-/* You can add global styles to this file, and also import other style files */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Utilities */
+:root {
+  --primary-color: #3b6276;
+  --primary-color-lighten: #446677;
+  --background-color: #fefefe;
+  --background-color-secondary: #fff;
+  --font-main-color: #000;
+}
+
+[data-theme="dark"] {
+  --background-color: #0b1014;
+  --background-color-secondary: #121a20;
+  --font-main-color: #fff;
+}
+
+::selection {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 16px;
+  color: var(--font-main-color);
+  /* useful for sticking the footer to bottom of page */
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color);
+  transition: background-color 200ms ease-in;
+}
+
+input {
+  color: var(--font-main-color);
+}
+
+/* Styling */
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+}
+
+h1 {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+h2 {
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Footer */
+.footer-separator {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.footer {
+  margin-top: auto;
+  box-shadow: -2px -3px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  text-align: center;
+  background-color: var(--background-color-secondary);
+  transition: background-color 200ms ease-in;
+}
+@media screen and (max-width: 480px) {
+  .footer {
+    font-size: 0.9em;
+  }
+}
+
+/* Forms */
+.form__item {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form__label {
+  width: 6rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.form__input {
+  padding: 0.5rem;
+  width: 100%;
+  border-width: 1px;
+  border-color: rgba(0, 0, 10, 0.25);
+  border-radius: 0.5rem;
+  transition: border-color 200ms ease-in;
+}
+
+.form__input::placeholder {
+  color: #bbb;
+}
+
+.form__input:focus {
+  border-color: #2b627c;
+  outline: 0;
+}
+
+.form__item--buttons {
+  display:flex;
+}
+
+.form__button {
+  padding: 0.6em 1.2em;
+  margin-right: 1rem;
+  border-radius: 1rem;
+  font-weight: 500;
+    
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.form__button.form__button--submit {
+  background-color: #2b627c;
+  border: 1px solid #2b627c;
+  color: #fff;
+}
+.form__button.form__button--reset {
+  background-color: #fff;
+  border: 1px solid #0c1f24;
+  color: #0c1f24;
+}
