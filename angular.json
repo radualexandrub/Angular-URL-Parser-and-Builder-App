@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "baseHref": "",
             "outputPath": "dist/url-parser-and-builder-app",
             "index": "src/index.html",
             "main": "src/main.ts",
