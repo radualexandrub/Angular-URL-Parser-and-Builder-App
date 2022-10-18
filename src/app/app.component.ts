@@ -55,7 +55,6 @@ export class AppComponent {
   onBuildUrlParams(urlNewParamsForm: NgForm) {
     let urlNewSearchParams = new URLSearchParams();
     for (const [key, value] of Object.entries(urlNewParamsForm.value)) {
-      console.log(key, value);
       urlNewSearchParams.append(key, value as string);
     }
     console.log(urlNewSearchParams.toString());

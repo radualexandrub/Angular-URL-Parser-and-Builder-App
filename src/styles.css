@@ -8,16 +8,18 @@
 
 /* Utilities */
 :root {
-  --primary-color: #3b6276;
-  --primary-color-lighten: #446677;
-  --background-color: #fefefe;
-  --background-color-secondary: #fff;
+  --primary-color: hsl(200, 27%, 37%);
+  --secondary-color: hsl(200, 33%, 24%);
+  --background-color: hsl(0, 0%, 100%);
+  --background-color-secondary: hsl(0, 0%, 100%);
   --font-main-color: #000;
 }
 
 [data-theme="dark"] {
-  --background-color: #0b1014;
-  --background-color-secondary: #121a20;
+  --primary-color: hsl(216, 85%, 80%);
+  --secondary-color: hsl(210, 79%, 75%);  
+  --background-color: hsl(207, 29%, 6%);
+  --background-color-secondary: hsl(206, 28%, 10%);
   --font-main-color: #fff;
 }
 
@@ -26,11 +28,12 @@
   color: #fff;
 }
 
-html {
+html,
+body {
   height: 100%;
 }
 
-body {
+app-root {
   font-family: sans-serif;
   font-size: 16px;
   color: var(--font-main-color);
@@ -42,8 +45,13 @@ body {
   transition: background-color 200ms ease-in;
 }
 
+a {
+  color: var(--primary-color);
+}
+
 input {
   color: var(--font-main-color);
+  background-color: var(--background-color-secondary);
 }
 
 /* Styling */
@@ -72,12 +80,14 @@ h2 {
 }
 
 /* Footer */
+app-footer {
+  margin-top: auto;
+}
 .footer-separator {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 .footer {
-  margin-top: auto;
   box-shadow: -2px -3px 8px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   text-align: center;
@@ -126,14 +136,13 @@ h2 {
 
 .form__item--buttons {
   display:flex;
+  gap: 1rem;
 }
 
 .form__button {
   padding: 0.6em 1.2em;
-  margin-right: 1rem;
   border-radius: 1rem;
   font-weight: 500;
-    
   letter-spacing: 1px;
   cursor: pointer;
 }
