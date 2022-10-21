@@ -4,10 +4,29 @@
     <form #urlForm="ngForm" (ngSubmit)="onParseUrl(urlForm)">
       <div class="form__item">
         <label class="form__label" for="url">URL</label>
-        <input ngModel class="form__input" type="url" name="url" id="url" required />
+        <input
+          ngModel
+          class="form__input"
+          type="url"
+          name="url"
+          id="url"
+          required
+        />
         <div class="form__item--buttons">
-          <button class="form__button form__button--submit" type="submit" [disabled]="urlForm.invalid">Parse</button>
-          <button class="form__button form__button--reset" type="reset" (click)="onClearUrl()">Clear</button>
+          <button
+            class="form__button form__button--submit"
+            type="submit"
+            [disabled]="urlForm.invalid"
+          >
+            Parse
+          </button>
+          <button
+            class="form__button form__button--reset"
+            type="reset"
+            (click)="onClearUrl()"
+          >
+            Clear
+          </button>
         </div>
       </div>
     </form>
@@ -151,25 +170,84 @@
       </form>
     </div>
 
-    <h2>Query String</h2>
-    <form #urlNewFormQuery="ngForm" (change)="onBuildUrlParams(urlNewFormQuery)">
-      <div class="form__item" *ngFor="let param of urlParams | keyvalue">
-        <label class="form__label" title={{param.key}} for="{{ param.key }}">{{ param.key }}</label>
-        <input
-          type="text"
-          name="{{ param.key }}"
-          id="{{ param.key }}"
-          class="form__input"
-          ngModel="{{ param.value }}"
-          required
-        />
-      </div>
-    </form>
-    
+    <div *ngIf="url.search">
+      <h2>Query String</h2>
+      <form
+        #urlNewFormQuery="ngForm"
+        (change)="onBuildUrlParams(urlNewFormQuery)"
+      >
+        <div class="form__item" *ngFor="let param of urlParams | keyvalue">
+          <label
+            class="form__label"
+            title="{{ param.key }}"
+            for="{{ param.key }}"
+            >{{ param.key }}</label
+          >
+          <input
+            type="text"
+            name="{{ param.key }}"
+            id="{{ param.key }}"
+            class="form__input"
+            ngModel="{{ param.value }}"
+            required
+          />
+        </div>
+      </form>
+    </div>
+
     <div>
       <h2>New URL:</h2>
-      <p *ngIf="!urlNewComplete">Please change Href or Query Parameters first!</p>
-      <a *ngIf="urlNewComplete" href="{{urlNewComplete}}" target="_blank">{{urlNewComplete}}</a>
+      <p *ngIf="!urlNewComplete">
+        Please change Href or Query Parameters first!
+      </p>
+      <a *ngIf="urlNewComplete" href="{{ urlNewComplete }}" target="_blank">{{
+        urlNewComplete
+      }}</a>
+    </div>
+  </div>
+
+  <div class="separator"></div>
+  <div>
+    <h2>Examples</h2>
+    <div class="form__item--buttons flex-wrap">
+      <button
+        class="form__button form__button--submit"
+        (click)="
+          onParseExample(
+            'https://api.whatsapp.com/send/?app_absent=0&phone=40999999999&text=Hello+world%2C+How+are+you+today%3F&type=phone_number'
+          )
+        "
+      >
+        WhatsApp API
+      </button>
+      <button
+        class="form__button form__button--submit"
+        (click)="
+          onParseExample(
+            'https://www.google.com/search?q=angular+crash+course+for+beginners&oq=angular+cras&sourceid=chrome&ie=UTF-8'
+          )
+        "
+      >
+        Google
+      </button>
+      <button
+        class="form__button form__button--submit"
+        (click)="
+          onParseExample('https://unsplash.com/s/photos/foggy-mountains')
+        "
+      >
+        Unsplash
+      </button>
+      <button
+        class="form__button form__button--submit"
+        (click)="
+          onParseExample(
+            'https://www.jfrog.com/jira/browse/RTFACT-27232?jql=project%20%3D%20%22Artifactory%20Binary%20Repository%22%20AND%20(text%20~%20%22system%20down%22%20OR%20description%20~%20%22system%20down%22)%20ORDER%20BY%20key%20DESC'
+          )
+        "
+      >
+        Jira
+      </button>
     </div>
   </div>
 </div>

@@ -45,6 +45,12 @@ app-root {
   transition: background-color 200ms ease-in;
 }
 
+@media screen and (max-width: 480px) {
+  app-root {
+    font-size: 14px;
+  }
+}
+
 a {
   color: var(--primary-color);
 }
@@ -76,16 +82,18 @@ h1 {
 }
 h2 {
   margin-bottom: 0.5rem;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 
 /* Footer */
 app-footer {
   margin-top: auto;
 }
-.footer-separator {
+.separator {
   margin-top: 1rem;
   margin-bottom: 1rem;
+  /* Avoid collapsing margins */
+  display: flex;
 }
 .footer {
   box-shadow: -2px -3px 8px rgba(0, 0, 0, 0.1);
@@ -119,7 +127,7 @@ app-footer {
 .form__input {
   padding: 0.5rem;
   width: 100%;
-  border-width: 1px;
+  border-width: 2px;
   border-color: rgba(0, 0, 10, 0.25);
   border-radius: 0.5rem;
   transition: border-color 200ms ease-in;
@@ -135,8 +143,12 @@ app-footer {
 }
 
 .form__item--buttons {
-  display:flex;
+  display: flex;
   gap: 1rem;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 .form__button {

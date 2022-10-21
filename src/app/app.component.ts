@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -16,12 +16,11 @@ export class AppComponent {
 
   onClearUrl() {
     delete this.urlNew;
-    this.urlNewComplete = "";
+    this.urlNewComplete = '';
   }
 
   onParseUrl(urlForm: NgForm) {
-    const methodName = "onParseUrl()";
-    
+    const methodName = 'onParseUrl()';
     try {
       this.url = new URL(urlForm.value.url);
       this.urlNew = new URL(urlForm.value.url);
@@ -29,26 +28,26 @@ export class AppComponent {
       const urlSearchParams = new URLSearchParams(this.url.search);
       this.urlParams = Object.fromEntries(urlSearchParams.entries());
       this.urlNewParams = Object.fromEntries(urlSearchParams.entries());
-      this.urlNewComplete = "";
-      
-      console.log(this.url);
-      console.log(this.urlParams);
+      this.urlNewComplete = '';
 
     } catch (error) {
-      console.error(`${methodName} ${urlForm.value.url} is not a valid URL - ${error}`);
+      console.error(
+        `${methodName} ${urlForm.value.url} is not a valid URL - ${error}`
+      );
     }
   }
 
   onBuildUrl(urlNewForm: NgForm) {
-    const methodName = "onBuildUrl()";
+    const methodName = 'onBuildUrl()';
     console.log(urlNewForm.value);
     try {
       this.urlNew = new URL(urlNewForm.value.href);
       this.urlNewComplete = urlNewForm.value.href;
       console.log(this.urlNew);
-
     } catch (error) {
-      console.error(`${methodName} ${urlNewForm.value.url} is not a valid URL - ${error}`);
+      console.error(
+        `${methodName} ${urlNewForm.value.url} is not a valid URL - ${error}`
+      );
     }
   }
 
@@ -61,5 +60,15 @@ export class AppComponent {
     this.urlNewParams = urlNewSearchParams;
     this.urlNew.search = this.urlNewParams.toString();
     this.urlNewComplete = this.urlNew.href;
+  }
+
+  onParseExample(exampleUrl: any) {
+    let ngForm = <NgForm>{
+      value: {
+        url: exampleUrl,
+      },
+    };
+    this.onParseUrl(ngForm);
+    (<HTMLInputElement>document.getElementById("url")).value = exampleUrl;
   }
 }
