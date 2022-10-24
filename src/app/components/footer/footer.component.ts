@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { faMoon } from '@fortawesome/free-solid-svg-icons';
+import { faMoon, faPaintBrush } from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.css']
+  styleUrls: ['./footer.component.css'],
 })
 export class FooterComponent implements OnInit {
   faMoon = faMoon;
+  faPaintBrush = faPaintBrush;
+  faGithub = faGithub as IconProp;
+  colorValue: any;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     if (localStorage.getItem("theme") === null) {
@@ -29,5 +34,16 @@ export class FooterComponent implements OnInit {
       localStorage.setItem("theme", "light");
       document.documentElement.setAttribute("data-theme", "light");
     }
+  }
+
+  onToggleAccentColor() {
+    document.getElementById('accentColorInput')?.click();
+  }
+
+  onChangeAccentColor(colorValueEvent: any) {
+    document.documentElement.style.setProperty(
+      '--primary-color',
+      colorValueEvent.target.value
+    );
   }
 }

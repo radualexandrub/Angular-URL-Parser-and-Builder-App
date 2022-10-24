@@ -1,15 +1,57 @@
 <div class="separator"></div>
 <div class="footer">
   <div>
-    <p style="margin-bottom: 0.5rem;">
+    <div
+      style="
+        margin-bottom: 0.5rem;
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+      "
+    >
+      <div style="position: relative">
+        <fa-icon
+          (click)="onToggleAccentColor()"
+          style="cursor: pointer; position: relative"
+          title="Pick custom accent color"
+          [icon]="faPaintBrush"
+        >
+        </fa-icon>
+        <input
+          (input)="onChangeAccentColor($event)"
+          type="color"
+          id="accentColorInput"
+          name="accentColorInput"
+          ngModel="#4ca800"
+          style="
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+          "
+        />
+      </div>
       <fa-icon
         (click)="onToggleDarkTheme()"
-        style="cursor: pointer;"
+        style="cursor: pointer"
         title="Toggle between light/dark theme"
         [icon]="faMoon"
       >
       </fa-icon>
-    </p>
+      <a
+        target="_blank"
+        href="https://github.com/radualexandrub/Angular-URL-Parser-and-Builder-App"
+      >
+        <fa-icon
+          style="cursor: pointer"
+          title="View the code on GitHub"
+          [icon]="faGithub"
+          style="color: var(--font-main-color)"
+        >
+        </fa-icon
+      ></a>
+    </div>
     <p>
       Made with <a target="_blank" href="https://angular.io/">Angular</a> and
       <a
@@ -18,6 +60,9 @@
         >URL API</a
       >
     </p>
-    <p>Copyright 2022 &copy; Radu-Alexandru B.</p>
+    <p>
+      Copyright 2022 &copy;
+      <a target="_blank" href="https://radubulai.com/">Radu-Alexandru B.</a>
+    </p>
   </div>
 </div>
