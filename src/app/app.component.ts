@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,7 @@ import { NgForm } from '@angular/forms';
 })
 export class AppComponent {
   title = 'url-parser-and-builder-app';
+  faTimes = faTimes;
   public url!: URL;
   public urlParams!: any;
   public urlNew: any;
@@ -39,27 +41,38 @@ export class AppComponent {
 
   onBuildUrl(urlNewForm: NgForm) {
     const methodName = 'onBuildUrl()';
-    console.log(urlNewForm.value);
+    console.log(`${methodName} urlNewForm ${JSON.stringify(urlNewForm.value)}`);
     try {
       this.urlNew = new URL(urlNewForm.value.href);
       this.urlNewComplete = urlNewForm.value.href;
-      console.log(this.urlNew);
+      console.log(`${methodName} New URL ${this.urlNew}`);
     } catch (error) {
       console.error(
-        `${methodName} ${urlNewForm.value.url} is not a valid URL - ${error}`
+        `${methodName} ${urlNewForm.value.href} is not a valid URL - ${error}`
       );
     }
   }
 
+  onDeleteUrlParam(paramKey: any) {
+    const methodName = 'onDeleteUrlParam()';
+    delete this.urlParams[paramKey];
+    console.log(`${methodName} New urlParams: ${JSON.stringify(this.urlParams)}`);
+    let urlNewParamsForm = <NgForm>{
+      value: this.urlParams
+    };
+    this.onBuildUrlParams(urlNewParamsForm);
+  }
+
   onBuildUrlParams(urlNewParamsForm: NgForm) {
     let urlNewSearchParams = new URLSearchParams();
+    const methodName = 'onBuildUrlParams()';
     for (const [key, value] of Object.entries(urlNewParamsForm.value)) {
       urlNewSearchParams.append(key, value as string);
     }
-    console.log(urlNewSearchParams.toString());
     this.urlNewParams = urlNewSearchParams;
     this.urlNew.search = this.urlNewParams.toString();
     this.urlNewComplete = this.urlNew.href;
+    console.log(`${methodName} New URL: ${this.urlNewComplete}`);
   }
 
   onParseExample(exampleUrl: any) {

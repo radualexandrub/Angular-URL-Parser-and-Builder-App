@@ -191,6 +191,12 @@
             ngModel="{{ param.value }}"
             required
           />
+          <fa-icon
+            (click)="onDeleteUrlParam(param.key)"
+            title="Delete this parameter"
+            [icon]="faTimes"
+            style="cursor: pointer; color: var(--primary-color)"
+          ></fa-icon>
         </div>
       </form>
     </div>

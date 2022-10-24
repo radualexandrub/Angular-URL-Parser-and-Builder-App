@@ -8,24 +8,26 @@
 
 /* Utilities */
 :root {
-  --primary-color: hsl(200, 27%, 37%);
+  --primary-color: hsl(200, 27%, 25%);
   --secondary-color: hsl(200, 33%, 24%);
   --background-color: hsl(0, 0%, 100%);
   --background-color-secondary: hsl(0, 0%, 100%);
   --font-main-color: #000;
+  --font-opposite-color: #fff;
 }
 
 [data-theme="dark"] {
-  --primary-color: hsl(216, 85%, 80%);
+  --primary-color: hsl(216, 85%, 85%);
   --secondary-color: hsl(210, 79%, 75%);  
   --background-color: hsl(207, 29%, 6%);
   --background-color-secondary: hsl(206, 28%, 10%);
   --font-main-color: #fff;
+  --font-opposite-color: #000;
 }
 
 ::selection {
   background: var(--primary-color);
-  color: #fff;
+  color: var(--font-opposite-color);
 }
 
 html,
@@ -77,6 +79,7 @@ input {
 }
 
 h1 {
+  color: var(--primary-color);
   margin-bottom: 1rem;
   margin-top: 1rem;
 }
@@ -138,7 +141,7 @@ app-footer {
 }
 
 .form__input:focus {
-  border-color: #2b627c;
+  border-color: var(--primary-color);
   outline: 0;
 }
 
@@ -160,12 +163,12 @@ app-footer {
 }
 
 .form__button.form__button--submit {
-  background-color: #2b627c;
-  border: 1px solid #2b627c;
-  color: #fff;
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  color: var(--font-opposite-color);
 }
 .form__button.form__button--reset {
-  background-color: #fff;
-  border: 1px solid #0c1f24;
-  color: #0c1f24;
+  background-color: var(--background-color);
+  border: 1px solid var(--primary-color);
+  color: var(--font-main-color);
 }
