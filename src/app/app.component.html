@@ -176,7 +176,7 @@
         #urlNewFormQuery="ngForm"
         (change)="onBuildUrlParams(urlNewFormQuery)"
       >
-        <div class="form__item" *ngFor="let param of urlParams | keyvalue">
+        <div class="form__item" *ngFor="let param of urlNewParams | keyvalue">
           <label
             class="form__label"
             title="{{ param.key }}"
@@ -203,12 +203,16 @@
 
     <div>
       <h2>New URL:</h2>
-      <p *ngIf="!urlNewComplete">
+      <p *ngIf="!urlNew.href">
         Please change Href or Query Parameters first!
       </p>
-      <a *ngIf="urlNewComplete" href="{{ urlNewComplete }}" target="_blank">{{
-        urlNewComplete
-      }}</a>
+      <a
+        class="word-wrap"
+        *ngIf="urlNew.href"
+        href="{{ urlNew.href }}"
+        target="_blank"
+        >{{ urlNew.href }}</a
+      >
     </div>
   </div>
 

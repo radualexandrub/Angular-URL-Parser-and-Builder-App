@@ -14,15 +14,14 @@ export class AppComponent {
   public urlParams!: any;
   public urlNew: any;
   public urlNewParams!: any;
-  public urlNewComplete!: string;
 
   onClearUrl() {
     delete this.urlNew;
-    this.urlNewComplete = '';
   }
 
   onParseUrl(urlForm: NgForm) {
     const methodName = 'onParseUrl()';
+
     try {
       this.url = new URL(urlForm.value.url);
       this.urlNew = new URL(urlForm.value.url);
@@ -30,8 +29,6 @@ export class AppComponent {
       const urlSearchParams = new URLSearchParams(this.url.search);
       this.urlParams = Object.fromEntries(urlSearchParams.entries());
       this.urlNewParams = Object.fromEntries(urlSearchParams.entries());
-      this.urlNewComplete = '';
-
     } catch (error) {
       console.error(
         `${methodName} ${urlForm.value.url} is not a valid URL - ${error}`
@@ -41,10 +38,10 @@ export class AppComponent {
 
   onBuildUrl(urlNewForm: NgForm) {
     const methodName = 'onBuildUrl()';
+
     console.log(`${methodName} urlNewForm ${JSON.stringify(urlNewForm.value)}`);
     try {
       this.urlNew = new URL(urlNewForm.value.href);
-      this.urlNewComplete = urlNewForm.value.href;
       console.log(`${methodName} New URL ${this.urlNew}`);
     } catch (error) {
       console.error(
@@ -55,24 +52,32 @@ export class AppComponent {
 
   onDeleteUrlParam(paramKey: any) {
     const methodName = 'onDeleteUrlParam()';
-    delete this.urlParams[paramKey];
-    console.log(`${methodName} New urlParams: ${JSON.stringify(this.urlParams)}`);
+
+    delete this.urlNewParams[paramKey];
+    console.log(
+      `${methodName} New urlParams: ${JSON.stringify(this.urlNewParams)}`
+    );
     let urlNewParamsForm = <NgForm>{
-      value: this.urlParams
+      value: this.urlNewParams,
     };
     this.onBuildUrlParams(urlNewParamsForm);
   }
 
   onBuildUrlParams(urlNewParamsForm: NgForm) {
-    let urlNewSearchParams = new URLSearchParams();
     const methodName = 'onBuildUrlParams()';
+    let urlNewSearchParams = new URLSearchParams();
+
+    console.log(
+      `${methodName} Old urlParams: ${JSON.stringify(this.urlNewParams)}`
+    );
     for (const [key, value] of Object.entries(urlNewParamsForm.value)) {
       urlNewSearchParams.append(key, value as string);
     }
-    this.urlNewParams = urlNewSearchParams;
-    this.urlNew.search = this.urlNewParams.toString();
-    this.urlNewComplete = this.urlNew.href;
-    console.log(`${methodName} New URL: ${this.urlNewComplete}`);
+    this.urlNewParams = Object.fromEntries(urlNewSearchParams.entries());
+    this.urlNew.search = urlNewSearchParams.toString();
+    console.log(
+      `${methodName} New urlParams: ${JSON.stringify(this.urlNewParams)}`
+    );
   }
 
   onParseExample(exampleUrl: any) {
@@ -82,6 +87,6 @@ export class AppComponent {
       },
     };
     this.onParseUrl(ngForm);
-    (<HTMLInputElement>document.getElementById("url")).value = exampleUrl;
+    (<HTMLInputElement>document.getElementById('url')).value = exampleUrl;
   }
 }

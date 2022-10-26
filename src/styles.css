@@ -88,6 +88,12 @@ h2 {
   margin-top: 1rem;
 }
 
+.word-wrap {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
 /* Footer */
 app-footer {
   margin-top: auto;
