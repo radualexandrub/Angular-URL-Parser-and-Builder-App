@@ -2,9 +2,23 @@
 
 Simple URL Parser and Builder Application based on URL's query parameters. Just enter the desired URL, modify its parameters, and use the new built URL according to your needs!
 
-🚀 Use the app right here -> https://radubulai.com/Angular-URL-Parser-and-Builder-App/
+🚀 **Use the app right here** -> https://radubulai.com/Angular-URL-Parser-and-Builder-App/
 
 🔵 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.4.
+
+## Features
+
+- Enter your desired URL to see all of its components
+- Modify URL's query parameters to get a new modified URL
+- Responsive on every device
+- Dark mode
+- Choose your favorite accent color! - Useful when multiple instances (tabs) of this app are open simultaneously
+
+## Screenshots
+
+![URL Paser and Builder APP Tool](./demo/URL_Parser_Builder_APP_01.jpg)
+
+![URL Paser and Builder APP Tool](./demo/URL_Parser_Builder_APP_02.jpg)
 
 ## Install Dependecies
 
@@ -48,7 +62,7 @@ Now the CLI is ready to deploy your application into GitHub Pages. You can use t
 ng deploy --base-href=/<repositoryname>/
 ```
 
-The above command will build your application and push the final static files to the gh-pages branch. After the first successful deployment, GitHub will automatically enable the GitHub Pages feature for the new repository. More information is available in the Settings tab, under the GitHub Pages section. 
+The above command will build your application and push the final static files to the gh-pages branch. After the first successful deployment, GitHub will automatically enable the GitHub Pages feature for the new repository. More information is available in the Settings tab, under the GitHub Pages section.
 
 ## Running unit tests
 
@@ -63,6 +77,14 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - [JavaScript URL API Documentation](https://developer.mozilla.org/en-US/docs/Web/API/URL)
 - [Solve blank page from index.html when running ng build](https://stackoverflow.com/questions/51718020/when-running-ng-build-the-index-html-does-nothing)
 - [Deploying single-page Angular apps to GitHub Pages - LogRocket](https://blog.logrocket.com/deploying-single-page-angular-apps-to-github-pages/)
+
+Inspiration:
+
+- [Free Online URL Parser / Query String Splitter - freeformatter.com](https://www.freeformatter.com/url-parser-query-string-splitter.html)
+- [URL Parser / Query String Splitter - appdevtools.com](https://appdevtools.com/url-parser-query-string-splitter)
+- [How to Get URL Parameters in React - upbeatcode.com](https://www.upbeatcode.com/react/how-to-get-url-parameters-in-react/)
+
+![URL Query Parameters Explained - upbeatcode.com](./demo/url-parameter.png)
 
 ## License
 
