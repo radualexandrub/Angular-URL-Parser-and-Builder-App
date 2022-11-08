@@ -170,8 +170,8 @@
       </form>
     </div>
 
-    <div *ngIf="url.search">
-      <h2>Query String</h2>
+    <h2>Query String</h2>
+    <div *ngIf="urlNew.search">
       <form
         #urlNewFormQuery="ngForm"
         (change)="onBuildUrlParams(urlNewFormQuery)"
@@ -200,6 +200,39 @@
         </div>
       </form>
     </div>
+    <p style="margin-top: 1rem">Enter additional query parameter:</p>
+    <form
+      #urlExtraSearchParam="ngForm"
+      (submit)="onAddExtraUrlParam(urlExtraSearchParam)"
+    >
+      <div class="form__item">
+        <input
+          type="text"
+          name="newExtraParamKey"
+          id="newExtraParamKey"
+          class="form__input"
+          placeholder="New Key"
+          ngModel
+          required
+        />
+        <input
+          type="text"
+          name="newExtraParamValue"
+          id="newExtraParamValue"
+          class="form__input"
+          placeholder="New Value"
+          ngModel
+          required
+        />
+        <button
+          class="form__button form__button--submit"
+          title="Add new query parameter"
+          [disabled]="urlExtraSearchParam.invalid"
+        >
+          Add
+        </button>
+      </div>
+    </form>
 
     <div>
       <h2>New URL:</h2>

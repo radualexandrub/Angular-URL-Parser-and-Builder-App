@@ -39,10 +39,12 @@ export class AppComponent {
   onBuildUrl(urlNewForm: NgForm) {
     const methodName = 'onBuildUrl()';
 
-    console.log(`${methodName} urlNewForm ${JSON.stringify(urlNewForm.value)}`);
+    console.debug(
+      `${methodName} urlNewForm ${JSON.stringify(urlNewForm.value)}`
+    );
     try {
       this.urlNew = new URL(urlNewForm.value.href);
-      console.log(`${methodName} New URL ${this.urlNew}`);
+      console.debug(`${methodName} New URL ${this.urlNew}`);
     } catch (error) {
       console.error(
         `${methodName} ${urlNewForm.value.href} is not a valid URL - ${error}`
@@ -54,7 +56,7 @@ export class AppComponent {
     const methodName = 'onDeleteUrlParam()';
 
     delete this.urlNewParams[paramKey];
-    console.log(
+    console.debug(
       `${methodName} New urlParams: ${JSON.stringify(this.urlNewParams)}`
     );
     let urlNewParamsForm = <NgForm>{
@@ -67,7 +69,7 @@ export class AppComponent {
     const methodName = 'onBuildUrlParams()';
     let urlNewSearchParams = new URLSearchParams();
 
-    console.log(
+    console.debug(
       `${methodName} Old urlParams: ${JSON.stringify(this.urlNewParams)}`
     );
     for (const [key, value] of Object.entries(urlNewParamsForm.value)) {
@@ -75,9 +77,25 @@ export class AppComponent {
     }
     this.urlNewParams = Object.fromEntries(urlNewSearchParams.entries());
     this.urlNew.search = urlNewSearchParams.toString();
-    console.log(
+    console.debug(
       `${methodName} New urlParams: ${JSON.stringify(this.urlNewParams)}`
     );
+  }
+
+  onAddExtraUrlParam(urlExtraSearchParam: NgForm) {
+    const methodName = 'onAddExtraQueryParam()';
+    let urlNewSearchParams = new URLSearchParams(this.urlNew.search);
+
+    urlNewSearchParams.append(
+      urlExtraSearchParam.value.newExtraParamKey,
+      urlExtraSearchParam.value.newExtraParamValue
+    );
+    this.urlNewParams = Object.fromEntries(urlNewSearchParams.entries());
+    this.urlNew.search = urlNewSearchParams.toString();
+    console.debug(
+      `${methodName} New urlParams: ${JSON.stringify(this.urlNewParams)}`
+    );
+    urlExtraSearchParam.reset();
   }
 
   onParseExample(exampleUrl: any) {
