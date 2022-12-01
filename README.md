@@ -60,6 +60,9 @@ Now the CLI is ready to deploy your application into GitHub Pages. You can use t
 
 ```bash
 ng deploy --base-href=/<repositoryname>/
+
+# for this example where <repositoryname> is Angular-URL-Parser-and-Builder-App
+ng deploy --base-href=/Angular-URL-Parser-and-Builder-App/
 ```
 
 The above command will build your application and push the final static files to the gh-pages branch. After the first successful deployment, GitHub will automatically enable the GitHub Pages feature for the new repository. More information is available in the Settings tab, under the GitHub Pages section.
@@ -71,6 +74,36 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Project File Tree
+
+As of Thursday, December 01, 2022
+
+```
+Angular-URL-Parser-and-Builder-App/
+┣ dist/
+┣ src/
+┃ ┣ app/
+┃ ┃ ┣ components/
+┃ ┃ ┃ ┗ footer/
+┃ ┃ ┣ app-routing.module.ts
+┃ ┃ ┣ app.component.css
+┃ ┃ ┣ app.component.html
+┃ ┃ ┣ app.component.spec.ts
+┃ ┃ ┣ app.component.ts
+┃ ┃ ┗ app.module.ts
+┃ ┣ environments/
+┃ ┃ ┣ environment.prod.ts
+┃ ┃ ┗ environment.ts
+┃ ┣ index.html
+┃ ┣ main.ts
+┃ ┣ styles.css
+┣ angular.json
+┣ karma.conf.js
+┣ package-lock.json
+┣ package.json
+┗ README.md
+```
 
 ## Resources used
 
@@ -88,6 +121,6 @@ Inspiration:
 
 ## License
 
-Copyright (c) 2022 [Radu-Alexandru Bulai](https://radualexandrub.github.io/).
+Copyright &copy; 2022 [Radu-Alexandru Bulai](https://radualexandrub.github.io/).
 
 Released under [MIT License](./LICENSE).
