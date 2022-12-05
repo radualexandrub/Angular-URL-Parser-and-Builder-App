@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -7,13 +7,20 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'url-parser-and-builder-app';
   faTimes = faTimes;
   public url!: URL;
   public urlParams!: any;
   public urlNew: any;
   public urlNewParams!: any;
+  public urlsSavedToLocalStorage: any = [];
+
+  ngOnInit(): void {
+    this.urlsSavedToLocalStorage = JSON.parse(
+      localStorage.getItem('urlsSavedToLocalStorage') || '[]'
+    );
+  }
 
   onClearUrl() {
     delete this.urlNew;
@@ -106,5 +113,31 @@ export class AppComponent {
     };
     this.onParseUrl(ngForm);
     (<HTMLInputElement>document.getElementById('url')).value = exampleUrl;
+  }
+
+  onSaveURLToLocalStorage() {
+    const methodName = 'onSaveURLToLocalStorage()';
+    this.urlsSavedToLocalStorage.push(this.urlNew.href);
+    localStorage.setItem(
+      'urlsSavedToLocalStorage',
+      JSON.stringify(this.urlsSavedToLocalStorage)
+    );
+    console.debug(
+      `${methodName} URL ${this.urlNew.href} was saved to LocalStorage`
+    );
+  }
+
+  onDeleteURLFromLocalStorage(UrltoBeDeleted: any) {
+    const methodName = 'onDeleteURLFromLocalStorage()';
+    this.urlsSavedToLocalStorage = this.urlsSavedToLocalStorage.filter(
+      (urlToBeMatched: any) => urlToBeMatched !== UrltoBeDeleted
+    );
+    localStorage.setItem(
+      'urlsSavedToLocalStorage',
+      JSON.stringify(this.urlsSavedToLocalStorage)
+    );
+    console.debug(
+      `${methodName} URL ${UrltoBeDeleted} was deleted from LocalStorage`
+    );
   }
 }

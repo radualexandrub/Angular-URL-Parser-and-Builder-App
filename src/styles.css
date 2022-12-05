@@ -18,7 +18,7 @@
 
 [data-theme="dark"] {
   --primary-color: hsl(216, 85%, 85%);
-  --secondary-color: hsl(210, 79%, 75%);  
+  --secondary-color: hsl(210, 79%, 75%);
   --background-color: hsl(207, 29%, 6%);
   --background-color-secondary: hsl(206, 28%, 10%);
   --font-main-color: #fff;
@@ -98,11 +98,11 @@ h2 {
 app-footer {
   margin-top: auto;
 }
-.separator {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+.mb-2 {
+  margin-bottom: 2rem;
   /* Avoid collapsing margins */
   display: flex;
+  flex-direction: column;
 }
 .footer {
   box-shadow: -2px -3px 8px rgba(0, 0, 0, 0.1);

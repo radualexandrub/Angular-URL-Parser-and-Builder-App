@@ -236,21 +236,48 @@
 
     <div>
       <h2>New URL:</h2>
-      <p *ngIf="!urlNew.href">
-        Please change Href or Query Parameters first!
-      </p>
-      <a
-        class="word-wrap"
-        *ngIf="urlNew.href"
-        href="{{ urlNew.href }}"
-        target="_blank"
-        >{{ urlNew.href }}</a
-      >
+      <div class="form__item">
+        <a
+          class="word-wrap"
+          *ngIf="urlNew.href"
+          href="{{ urlNew.href }}"
+          target="_blank"
+          >{{ urlNew.href }}</a
+        >
+        <button
+          class="form__button form__button--submit"
+          title="Save this URL to LocalStorage"
+          (click)="onSaveURLToLocalStorage()"
+          style="margin-left: auto"
+        >
+          Save URL
+        </button>
+      </div>
     </div>
   </div>
 
-  <div class="separator"></div>
-  <div>
+  <div *ngIf="urlsSavedToLocalStorage.length">
+    <h2>Saved URLs</h2>
+    <div
+      class="form__item"
+      *ngFor="let urlSaved of urlsSavedToLocalStorage | keyvalue"
+    >
+      <input
+        type="text"
+        class="form__input"
+        ngModel="{{ urlSaved.value }}"
+        disabled
+      />
+      <fa-icon
+        (click)="onDeleteURLFromLocalStorage(urlSaved.value)"
+        title="Delete this URL from LocalStorage"
+        [icon]="faTimes"
+        style="cursor: pointer; color: var(--primary-color)"
+      ></fa-icon>
+    </div>
+  </div>
+
+  <div class="mb-2">
     <h2>Examples</h2>
     <div class="form__item--buttons flex-wrap">
       <button

@@ -9,10 +9,11 @@ Simple URL Parser and Builder Application based on URL's query parameters. Just 
 ## Features
 
 - Enter your desired URL to see all of its components
-- Modify URL's query parameters to get a new modified URL
+- Modify (or add new) URL's query parameters to get a new modified URL
 - Responsive on every device
 - Dark mode
 - Choose your favorite accent color! - Useful when multiple instances (tabs) of this app are open simultaneously
+- Save your new (modified) URLs to LocalStorage to use them later!
 
 ## Screenshots
 
